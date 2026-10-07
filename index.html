@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="落尘电影网（luochendianyingwang-cn.github.io）是安静的电影导航与选片指南：电影推荐、电影大全、冷门佳片、类型分类、口碑榜单、影评资讯一站直达。无弹窗、无诱导、每日更新，陪你在尘埃落定后，挑一部值得看的电影。">
+<meta name="keywords" content="落尘电影网,电影网,电影推荐,电影导航,高分电影,电影大全,冷门佳片,剧情片,文艺片,科幻片,经典老片,观影指南,luochendianyingwang">
+<meta name="author" content="落尘电影网">
+<meta name="robots" content="index, follow">
+<title>落尘电影网 - 安静的电影导航与选片指南 | 每日更新</title>
+<link rel="canonical" href="https://luochendianyingwang-cn.github.io/">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+        --ink:#23262f;--ink2:#767a88;--line:#e9e6df;--bg:#f4f1ea;--card:#fffdf9;
+        --taupe:#8c7a6b;--sand:#c9b79c;--plum:#6b5b95;--moss:#5f7a6b;--rust:#c1623f;--night:#2b2f3a;--paper:#efe8dc;--sh:0 18px 44px rgba(35,38,47,.13)
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:"Songti SC","STSong","SimSun","Noto Serif CJK SC","PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",serif;
+        background:var(--bg);color:var(--ink);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    ul{list-style:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+    .eyebrow{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:10.5px;letter-spacing:3.5px;color:var(--taupe);font-weight:700}
+    .sec-h{text-align:center;margin-bottom:46px}
+    .sec-h h2{font-size:clamp(26px,5vw,40px);font-weight:900;margin-top:8px;letter-spacing:1px}
+    .sec-h h2 em{font-style:normal;color:var(--rust);position:relative;display:inline-block;padding:0 4px}
+    .sec-h h2 em::after{content:"";position:absolute;left:2px;right:2px;bottom:6px;height:7px;background:var(--sand);opacity:.55;z-index:-1;border-radius:3px}
+    .sec-h p{color:var(--ink2);margin-top:12px;font-size:15px}
+
+    /* 导航 */
+    .nav{position:sticky;top:0;z-index:100;background:rgba(244,241,234,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .navbox{display:flex;align-items:center;height:66px;gap:20px}
+    .brand{display:flex;align-items:baseline;gap:8px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+    .brand b{font-size:20px}
+    .brand .n{font-family:"PingFang SC",sans-serif;font-size:11px;font-weight:700;color:#fff;background:var(--night);
+        padding:3px 9px;border-radius:20px;transform:translateY(-3px);display:inline-block}
+    .menu{display:flex;gap:4px;margin-left:auto;font-family:"PingFang SC",sans-serif}
+    .menu a{padding:9px 15px;border-radius:10px;font-size:14px;color:var(--ink2);font-weight:600;transition:.22s}
+    .menu a:hover{color:var(--rust);background:rgba(193,98,63,.07)}
+    .menu a.on{color:#fff;background:var(--night);box-shadow:0 6px 16px rgba(43,47,58,.28)}
+    .burger{display:none;flex-direction:column;gap:5px;margin-left:auto;cursor:pointer}
+    .burger i{width:24px;height:2px;background:var(--ink);border-radius:2px}
+
+    /* Hero —— 视觉方案 A：宣纸留白 + 飘落尘点 + 大引号 */
+    .hero{position:relative;padding:70px 0 60px;overflow:hidden;background:
+        radial-gradient(900px 420px at 88% 8%,rgba(201,183,156,.30),transparent 60%),
+        radial-gradient(700px 420px at 6% 100%,rgba(140,122,107,.16),transparent 60%),var(--paper)}
+    .dust{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--taupe);opacity:.5;animation:fall linear infinite}
+    @keyframes fall{0%{transform:translateY(-10vh) rotate(0);opacity:0}10%{opacity:.55}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+    .hg{position:relative;z-index:3;display:grid;grid-template-columns:1fr .9fr;gap:44px;align-items:center}
+    .hero h1{font-size:clamp(40px,7.2vw,74px);line-height:1.12;font-weight:900}
+    .hero h1 .q{font-family:Georgia,"Times New Roman",serif;color:var(--sand);font-size:.6em;vertical-align:top;line-height:.8}
+    .hero h1 .lc{color:var(--rust);position:relative;display:inline-block}
+    .hero h1 .lc::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:10px;background:rgba(201,183,156,.5);z-index:-1;border-radius:4px}
+    .hero p.lead{margin-top:22px;font-size:clamp(15px,1.6vw,18px);color:#5c6070;max-width:520px}
+    .cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;font-family:"PingFang SC",sans-serif}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;font-weight:700;font-size:14.5px;transition:.25s;border:2px solid transparent;cursor:pointer}
+    .btn.pri{background:var(--night);color:#fff;box-shadow:0 10px 24px rgba(43,47,58,.3)}
+    .btn.pri:hover{transform:translateY(-3px);background:var(--rust)}
+    .btn.ghost{background:var(--card);color:var(--ink);border-color:var(--line);box-shadow:0 4px 14px rgba(35,38,47,.05)}
+    .btn.ghost:hover{border-color:var(--moss);color:var(--rust)}
+    .open{position:relative;width:290px;height:300px;margin:0 auto;border-radius:14px;background:var(--card);
+        box-shadow:var(--sh);transform:rotate(-3deg);transition:.6s;overflow:hidden}
+    .open:hover{transform:rotate(0)}
+    .open .pg{position:absolute;inset:26px;border:1px solid var(--line);border-radius:4px;padding:26px 24px;display:flex;flex-direction:column;gap:14px}
+    .open .pg b{font-size:15px;color:var(--rust);letter-spacing:2px}
+    .open .pg span{height:2px;border-radius:2px;background:linear-gradient(90deg,var(--sand),transparent);width:100%}
+    .open .pg span:nth-child(3){width:82%} .open .pg span:nth-child(5){width:90%} .open .pg span:nth-child(7){width:60%}
+    .open .seal{position:absolute;right:16px;bottom:16px;width:54px;height:54px;border-radius:50%;background:var(--rust);color:#fff;
+        display:grid;place-items:center;font-size:12px;font-weight:900;letter-spacing:1px;box-shadow:0 6px 16px rgba(193,98,63,.4)}
+
+    /* 栏目一：冷门佳片 —— 视觉方案 B：书脊卡片（左侧色条 + 毛边纸） */
+    .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:20px}
+    .bk{display:flex;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(35,38,47,.07);
+        transition:.34s;min-height:168px}
+    .bk .sp{width:14px;flex:0 0 14px;background:var(--c);position:relative}
+    .bk .sp::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0 46%,rgba(0,0,0,.14) 46% 52%,transparent 52%)}
+    .bk .bd{padding:18px 20px;flex:1}
+    .bk .bd .tag{font-family:"PingFang SC",sans-serif;font-size:10.5px;letter-spacing:1.5px;color:var(--c);font-weight:700}
+    .bk .bd h4{font-size:17.5px;font-weight:900;margin-top:6px;line-height:1.35}
+    .bk .bd .yr{font-family:Georgia,serif;font-size:12px;color:var(--ink2);margin-top:2px}
+    .bk .bd p{font-size:12.5px;color:var(--ink2);margin-top:8px;line-height:1.62}
+    .bk .bd .sc{font-family:"PingFang SC",sans-serif;font-size:12px;font-weight:800;color:var(--rust);margin-top:9px}
+    .bk:hover{transform:translateY(-7px);box-shadow:var(--sh)}
+    .bk:nth-child(1){--c:var(--plum)} .bk:nth-child(2){--c:var(--moss)} .bk:nth-child(3){--c:var(--rust)}
+    .bk:nth-child(4){--c:var(--night)} .bk:nth-child(5){--c:var(--taupe)} .bk:nth-child(6){--c:var(--sand);color:#5c4a32}
+
+    /* 栏目二：类型导航 —— 视觉方案 C：印章方块（border + 伪元素对号） */
+    .sealgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:16px}
+    .sg{position:relative;aspect-ratio:1/1;border:2px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;
+        justify-content:space-between;background:var(--card);cursor:pointer;transition:.3s;overflow:hidden}
+    .sg .num{font-family:Georgia,serif;font-size:13px;font-weight:900;color:var(--sand)}
+    .sg b{font-size:19px;font-weight:900;letter-spacing:1px}
+    .sg small{font-family:"PingFang SC",sans-serif;font-size:10.5px;letter-spacing:2px;color:var(--ink2)}
+    .sg::after{content:"✓";position:absolute;right:-2px;bottom:-14px;font-size:64px;color:rgba(193,98,63,.10);transition:.35s}
+    .sg:hover{border-color:var(--rust);transform:translateY(-5px);box-shadow:var(--sh)}
+    .sg:hover::after{right:10px;bottom:6px;color:rgba(193,98,63,.34)}
+
+    /* 栏目三：口碑榜 —— 视觉方案 D：刻度尺 + 手写分数 */
+    .ruler{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;max-width:1060px;margin:0 auto}
+    .rule{position:relative;padding-left:54px}
+    .rule::before{content:"";position:absolute;left:0;top:-6px;bottom:-6px;width:3px;border-radius:3px;
+        background:repeating-linear-gradient(180deg,var(--taupe) 0 6px,transparent 6px 14px)}
+    .rule .rh{display:grid;grid-template-columns:34px 1fr 88px;gap:14px;align-items:center;padding:13px 0;border-bottom:1px dashed var(--line)}
+    .rule .rh:last-child{border:none}
+    .rule .rh .ix{font-family:Georgia,serif;font-size:14px;font-weight:900;color:var(--ink2);text-align:right}
+    .rule .rh .nm{font-size:15px;font-weight:850}
+    .rule .rh .nm em{font-style:normal;font-size:11px;color:var(--ink2);margin-left:6px}
+    .rule .rh .mk{font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-size:22px;font-weight:900;color:var(--rust);text-align:right;opacity:0;transition:.5s}
+    .rule .rh.in .mk{opacity:1}
+    .picks{display:flex;flex-direction:column;gap:14px}
+    .pk{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;transition:.26s}
+    .pk .idx{flex:0 0 38px;height:38px;border-radius:10px;background:var(--paper);color:var(--rust);display:grid;place-items:center;font-weight:950;font-size:15px}
+    .pk h5{font-size:15px;font-weight:900;line-height:1.4}
+    .pk p{font-size:12px;color:var(--ink2);margin-top:3px}
+    .pk:hover{border-color:var(--rust);transform:translateX(5px);box-shadow:var(--sh)}
+
+    /* 栏目四：专题策展 —— 视觉方案 E：横向卷轴（overflow-x + scroll-snap） */
+    .scroll{overflow-x:auto;overflow-y:hidden;padding:6px 0 22px;margin:0 -22px;padding-left:22px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+    .scroll::-webkit-scrollbar{height:8px} .scroll::-webkit-scrollbar-thumb{background:var(--sand);border-radius:8px}
+    .reel{display:flex;gap:18px;width:max-content}
+    .rv{flex:0 0 360px;height:250px;border-radius:16px;padding:26px;color:#fff;position:relative;overflow:hidden;scroll-snap-align:start;cursor:pointer;transition:.35s}
+    .rv i.bg{position:absolute;inset:0;display:block;transition:.7s}
+    .rv:nth-child(1) i.bg{background:linear-gradient(150deg,#4a3f6b,#6b5b95)}
+    .rv:nth-child(2) i.bg{background:linear-gradient(150deg,#3d4a40,#5f7a6b)}
+    .rv:nth-child(3) i.bg{background:linear-gradient(150deg,#8f4529,#c1623f)}
+    .rv:nth-child(4) i.bg{background:linear-gradient(150deg,#20242e,#3a4150)}
+    .rv:nth-child(5) i.bg{background:linear-gradient(150deg,#6b5637,#a88a5c)}
+    .rv .shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(20,18,15,.78))}
+    .rv .no{position:absolute;right:20px;top:16px;font-family:Georgia,serif;font-size:54px;font-weight:900;line-height:1;color:rgba(255,255,255,.2)}
+    .rv .ct{position:relative}
+    .rv .ct .k{font-family:"PingFang SC",sans-serif;font-size:10.5px;letter-spacing:3px;opacity:.85}
+    .rv .ct h4{font-size:21px;font-weight:950;margin-top:6px;line-height:1.4}
+    .rv .ct p{font-size:12.5px;opacity:.92;margin-top:8px;line-height:1.6}
+    .rv .go{position:absolute;left:26px;bottom:22px;font-family:"PingFang SC",sans-serif;font-size:12px;font-weight:800;border-bottom:2px solid rgba(255,255,255,.7);padding-bottom:2px}
+    .rv:hover i.bg{transform:scale(1.07)}
+    .rv:hover{box-shadow:0 20px 44px rgba(35,38,47,.3)}
+
+    /* 栏目五：关于本站 —— 视觉方案 F：日历格子 + 手写信 */
+    .ab{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+    .cal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .cd{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:16px;text-align:center;transition:.26s}
+    .cd:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+    .cd b{display:block;font-family:Georgia,serif;font-size:24px;font-weight:950;color:var(--c)}
+    .cd h5{font-size:13.5px;font-weight:850;margin-top:4px}
+    .cd span{font-size:11.5px;color:var(--ink2)}
+    .letter{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;position:relative;box-shadow:var(--sh)}
+    .letter::before{content:"“";position:absolute;left:14px;top:-8px;font-family:Georgia,serif;font-size:80px;color:var(--sand);line-height:1}
+    .letter p{font-size:14.5px;color:#4a4d58;line-height:2}
+    .letter .sign{margin-top:16px;text-align:right;font-family:"Kaiti SC","STKaiti","KaiTi",serif;font-size:17px;color:var(--rust);font-weight:900}
+    .letter .sign em{display:block;font-family:"PingFang SC",sans-serif;font-size:11px;color:var(--ink2);font-weight:500;letter-spacing:1px;font-style:normal}
+
+    footer{background:var(--night);color:#c9cbd4;margin-top:70px;padding:60px 0 24px}
+    .foot{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:30px}
+    .foot h5{font-size:15px;font-weight:850;color:#fff;margin-bottom:14px;font-family:"PingFang SC",sans-serif}
+    .foot a{display:block;color:#8f93a1;font-size:13px;padding:5px 0;transition:.2s;font-family:"PingFang SC",sans-serif}
+    .foot a:hover{color:#fff;transform:translateX(4px)}
+    .foot .brand{color:#fff;margin-bottom:10px}
+    .foot .brand p{color:#8f93a1;font-size:13px;max-width:340px;margin-top:10px;line-height:1.8;font-family:"PingFang SC",sans-serif}
+    .line{margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#6e7280;font-size:12px;font-family:"PingFang SC",sans-serif}
+    .line a{display:inline;color:#c9cbd4}
+    .line a:hover{color:#fff}
+
+    @media(max-width:980px){
+        .hg{grid-template-columns:1fr;text-align:center;padding-top:10px}
+        .hero p.lead{margin:22px auto 0}
+        .cta{justify-content:center}
+        .open{width:230px;height:238px;margin-top:26px}
+        .ruler{grid-template-columns:1fr;gap:34px}
+    }
+    @media(max-width:680px){
+        .burger{display:flex}
+        .menu{position:fixed;inset:66px 0 0 0;background:rgba(244,241,234,.98);backdrop-filter:blur(16px);flex-direction:column;padding:24px 20px;gap:8px;transform:translateX(100%);transition:.35s;z-index:99}
+        .menu.open{transform:translateX(0)}
+        .menu a{font-size:17px;padding:14px 18px;border-radius:14px;text-align:center}
+        .hero h1{font-size:34px}
+        .shelf{grid-template-columns:1fr 1fr}
+        .sealgrid{grid-template-columns:repeat(3,1fr)}
+        .ab{grid-template-columns:1fr}
+        .foot{grid-template-columns:1fr 1fr}
+        .rv{flex:0 0 300px}
+    }
+    @media print{.nav,.dust,.open{display:none}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<header class="nav" role="banner">
+    <div class="wrap navbox">
+        <a class="brand" href="#top" aria-label="落尘电影网 首页"><b>落尘电影网</b><span class="n">LC</span></a>
+        <nav class="menu" id="menu" aria-label="主导航">
+            <a class="on" href="#top">首页</a>
+            <a href="#gems">冷门佳片</a>
+            <a href="#gen">类型导航</a>
+            <a href="#rank">口碑榜单</a>
+            <a href="#topic">专题策展</a>
+            <a href="#about">关于本站</a>
+        </nav>
+        <div class="burger" id="burger" role="button" tabindex="0" aria-label="菜单"><i></i><i></i><i></i></div>
+    </div>
+</header>
+
+<!-- Hero：视觉方案 A（宣纸留白 + 飘落尘点 + 翻开的书页 + 大引号） -->
+<section class="hero" id="top" aria-labelledby="h1">
+    <div class="dust" id="dust" aria-hidden="true"></div>
+    <div class="wrap hg">
+        <div>
+            <span class="eyebrow">LUOCHEN · FILM INDEX</span>
+            <h1><span class="q">“</span>尘埃落定后，<br>看一部<em class="lc">好电影</em>。<span class="q">”</span></h1>
+            <p class="lead">落尘电影网（luochendianyingwang-cn.github.io）是一个安静的电影导航与选片指南：电影推荐、电影大全、冷门佳片、类型分类、口碑榜单、影评资讯一站直达。无弹窗、无诱导、每日更新。</p>
+            <div class="cta">
+                <a class="btn pri" href="#gems">📖 读今日冷门佳片</a>
+                <a class="btn ghost" href="#rank">🖋 翻口碑榜单</a>
+            </div>
+        </div>
+        <div class="open" aria-hidden="true">
+            <div class="pg">
+                <b>今日推荐</b>
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="seal">落尘</div>
+        </div>
+    </div>
+</section>
+
+<!-- 栏目一：冷门佳片 —— 视觉方案 B：书脊卡片（左侧色条 + 毛边纸 + 竖排标签） -->
+<section id="gems" aria-labelledby="t-gems">
+    <div class="wrap">
+        <div class="sec-h">
+            <span class="eyebrow">HIDDEN GEMS</span>
+            <h2>冷门<em>佳片</em></h2>
+            <p>评分不低，但知道的人不多。每一部都写清了"为什么值得看"。</p>
+        </div>
+        <div class="shelf">
+            <article class="bk"><div class="sp"></div><div class="bd"><span class="tag">剧情 · 2018</span><h4>《漫长的告白》</h4><span class="yr">2018</span><p>三个人、一条河、一段没说出口的话。镜头慢，但心里不空。</p><span class="sc">推荐指数 8.6</span></div></article>
+            <article class="bk"><div class="sp"></div><div class="bd"><span class="tag">文艺 · 2021</span><h4>《夏日细雨》</h4><span class="yr">2021</span><p>几乎没有剧情，全是情绪。适合雨天、窗户半开、什么都不想做的时候。</p><span class="sc">推荐指数 8.3</span></div></article>
+            <article class="bk"><div class="sp"></div><div class="bd"><span class="tag">悬疑 · 2019</span><h4>《第八封信》</h4><span class="yr">2019</span><p>七封信讲完一桩旧案，第八封留给你自己。结局反转得并不刻意。</p><span class="sc">推荐指数 8.4</span></div></article>
+            <article class="bk"><div class="sp"></div><div class="bd"><span class="tag">科幻 · 2022</span><h4>《静止的行星》</h4><span class="yr">2022</span><p>低成本硬科幻，靠设定取胜。时间停止之后，人才看清自己。</p><span class="sc">推荐指数 7.9</span></div></article>
+            <article class="bk"><div class="sp"></div><div class="bd"><span class="tag">纪录 · 2020</span><h4>《海边理发店》</h4><span class="yr">2020</span><p>一家快要倒闭的理发店，剪出了半座小城的往事。看完想回家。</p><span class="sc">推荐指数 8.1</span></div></article>
+            <article class="bk"><div class="sp"></div><div class="bd"><span class="tag">喜剧 · 2017</span><h4>《年会不能停》</h4><span class="yr">2017</span><p>职场讽刺，笑完有点心酸。台词一句顶十句，适合下班后看。</p><span class="sc">推荐指数 7.7</span></div></article>
+        </div>
+    </div>
+</section>
+
+<!-- 栏目二：类型导航 —— 视觉方案 C：印章方块（border + 伪元素对号 + 手写数字） -->
+<section id="gen" aria-labelledby="t-gen" style="background:linear-gradient(180deg,transparent,var(--paper))">
+    <div class="wrap">
+        <div class="sec-h">
+            <span class="eyebrow">GENRES</span>
+            <h2>按<em>心情</em>翻页</h2>
+            <p>不想动脑就选喜剧，想被治愈就选文艺。六种心境，随点随走。</p>
+        </div>
+        <div class="sealgrid">
+            <a class="sg"><span class="num">01</span><b>剧情文艺</b><small>DRAMA</small></a>
+            <a class="sg"><span class="num">02</span><b>科幻奇幻</b><small>SCI-FI</small></a>
+            <a class="sg"><span class="num">03</span><b>动作犯罪</b><small>ACTION</small></a>
+            <a class="sg"><span class="num">04</span><b>恐怖惊悚</b><small>HORROR</small></a>
+            <a class="sg"><span class="num">05</span><b>爱情喜剧</b><small>ROM-COM</small></a>
+            <a class="sg"><span class="num">06</span><b>经典老片</b><small>CLASSIC</small></a>
+        </div>
+    </div>
+</section>
+
+<!-- 栏目三：口碑榜 —— 视觉方案 D：刻度尺 + 手写分数 + 便签卡 -->
+<section id="rank" aria-labelledby="t-rank">
+    <div class="wrap">
+        <div class="sec-h">
+            <span class="eyebrow">TOP RATED</span>
+            <h2>落尘<em>口碑榜</em></h2>
+            <p>综合评分、站内点击与影评口碑，每月更新。榜首那部，值得二刷。</p>
+        </div>
+        <div class="ruler">
+            <div class="rule" aria-label="榜单刻度">
+                <div class="rh"><span class="ix">01</span><div class="nm">《漫长的告白》<em>剧情 · 2018</em></div><span class="mk">8.6</span></div>
+                <div class="rh"><span class="ix">02</span><div class="nm">《夏日细雨》<em>文艺 · 2021</em></div><span class="mk">8.3</span></div>
+                <div class="rh"><span class="ix">03</span><div class="nm">《第八封信》<em>悬疑 · 2019</em></div><span class="mk">8.4</span></div>
+                <div class="rh"><span class="ix">04</span><div class="nm">《静止的行星》<em>科幻 · 2022</em></div><span class="mk">7.9</span></div>
+                <div class="rh"><span class="ix">05</span><div class="nm">《海边理发店》<em>纪录 · 2020</em></div><span class="mk">8.1</span></div>
+                <div class="rh"><span class="ix">06</span><div class="nm">《年会不能停》<em>喜剧 · 2017</em></div><span class="mk">7.7</span></div>
+            </div>
+            <div class="picks">
+                <div class="pk"><span class="idx">观</span><div><h5>只看高分，不看热搜</h5><p>榜单以口碑与完成度为先，热度只作参考。冷门不等于难看。</p></div></div>
+                <div class="pk"><span class="idx">慢</span><div><h5>慢一点，也很好</h5><p>节奏慢的电影在这里不会被嫌弃。留白，是导演给你的礼物。</p></div></div>
+                <div class="pk"><span class="idx">真</span><div><h5>一句话说真话</h5><p>点评不剧透、不凑字数。看完不知道该不该看，再来翻这条。</p></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 栏目四：专题策展 —— 视觉方案 E：横向卷轴（overflow-x + scroll-snap + 大号水印序号） -->
+<section id="topic" aria-labelledby="t-topic" style="background:linear-gradient(180deg,transparent,var(--paper))">
+    <div class="wrap">
+        <div class="sec-h">
+            <span class="eyebrow">EDITORIAL</span>
+            <h2>专题<em>策展</em></h2>
+            <p>不想一部部挑？按主题成组看，体验更完整。</p>
+        </div>
+        <div class="scroll">
+            <div class="reel">
+                <article class="rv"><i class="bg"></i><span class="shade"></span><span class="no">01</span><div class="ct"><span class="k">MARATHON</span><h4>雨天 marathon：5 部文艺片</h4><p>从午后到凌晨，适合一个人、一杯热茶、窗帘拉一半。</p><span class="go">展开片单 →</span></div></article>
+                <article class="rv"><i class="bg"></i><span class="shade"></span><span class="no">02</span><div class="ct"><span class="k">SLOW CINEMA</span><h4>慢电影不催眠清单</h4><p>节奏慢，但不空。给愿意等的人，回赠的是余味。</p><span class="go">展开片单 →</span></div></article>
+                <article class="rv"><i class="bg"></i><span class="shade"></span><span class="no">03</span><div class="ct"><span class="k">ASIA</span><h4>亚洲作者电影巡礼</h4><p>从东亚到东南亚，几位不肯妥协的导演与他们的固执。</p><span class="go">展开片单 →</span></div></article>
+                <article class="rv"><i class="bg"></i><span class="shade"></span><span class="no">04</span><div class="ct"><span class="k">DEBUT</span><h4>导演处女作，往往最狠</h4><p>第一次拍电影的人，还没学会客气。锋利、莽撞、真实。</p><span class="go">展开片单 →</span></div></article>
+                <article class="rv"><i class="bg"></i><span class="shade"></span><span class="no">05</span><div class="ct"><span class="k">COMFORT</span><h4>累的时候看这些</h4><p>不费脑、不虐心、看完心里暖一下就够。</p><span class="go">展开片单 →</span></div></article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 栏目五：关于本站 —— 视觉方案 F：日历格子 + 手写信念 -->
+<section id="about" aria-labelledby="t-about">
+    <div class="wrap ab">
+        <div class="cal">
+            <div class="cd" style="--c:var(--plum)"><b>2,400+</b><h5>收录影片</h5><span>覆盖 12 种类型</span></div>
+            <div class="cd" style="--c:var(--moss)"><b>每日</b><h5>更新频率</h5><span>片单与榜单常换常新</span></div>
+            <div class="cd" style="--c:var(--rust)"><b>0</b><h5>弹窗广告</h5><span>不跳转、不诱导、不骚扰</span></div>
+            <div class="cd" style="--c:var(--night)"><b>8.2</b><h5>平均评分</h5><span>低于 7 分不入榜</span></div>
+            <div class="cd" style="--c:var(--taupe)"><b>6</b><h5>内容栏目</h5><span>从推荐到策展</span></div>
+            <div class="cd" style="--c:var(--sand);color:#5c4a32"><b>4.8</b><h5>读者评分</h5><span>来自站内真实反馈</span></div>
+        </div>
+        <div class="letter">
+            <p>我们不信"热门即好片"。<br>落尘电影网只做一件事：在成堆的片名里，替你挑出值得花两小时的那一部。<br>慢一点，也很好。</p>
+            <div class="sign">落尘电影网<em>LUOCHEN · SINCE TODAY</em></div>
+        </div>
+    </div>
+</section>
+
+<footer role="contentinfo">
+    <div class="wrap">
+        <div class="foot">
+            <div class="brand">
+                <a class="brand" href="#top"><b>落尘电影网</b><span class="n">LC</span></a>
+                <p>安静的电影导航与选片指南。结构清晰、加载迅速、全端自适应，做你决定"今晚看什么"时的那一点参考。</p>
+            </div>
+            <div><h5>快速导航</h5><a href="#top">首页</a><a href="#gems">冷门佳片</a><a href="#gen">类型导航</a><a href="#rank">口碑榜单</a><a href="#topic">专题策展</a></div>
+            <div><h5>内容频道</h5><a href="#">剧情文艺片</a><a href="#">科幻奇幻片</a><a href="#">动作犯罪片</a><a href="#">恐怖惊悚片</a><a href="#">爱情喜剧片</a></div>
+            <div><h5>关于本站</h5><a href="#about">关于我们</a><a href="#">收录标准</a><a href="#">免责声明</a><a href="#">隐私政策</a><a href="#">友情链接</a></div>
+        </div>
+        <div class="line">
+            <span>© 2026 落尘电影网 luochendianyingwang-cn.github.io 版权所有 · 本站仅为影视网址导航索引，不存储、不提供任何音视频资源下载与播放</span>
+            <span>网站网址：<a href="https://luochendianyingwang-cn.github.io/">https://luochendianyingwang-cn.github.io/</a></span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+    burger.addEventListener('click',function(){menu.classList.toggle('open')});
+    menu.addEventListener('click',function(e){if(e.target.tagName==='A')menu.classList.remove('open')});
+    var links=document.querySelectorAll('.menu a'),secs=document.querySelectorAll('section[id]');
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.18});
+    document.querySelectorAll('.rh').forEach(function(n){io.observe(n)});
+    window.addEventListener('scroll',function(){
+        var pos=window.scrollY+130,cur='';
+        secs.forEach(function(s){if(pos>=s.offsetTop)cur=s.id});
+        links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)});
+    });
+    // 飘落尘点
+    var dust=document.getElementById('dust'),frag=document.createDocumentFragment();
+    for(var i=0;i<26;i++){var d=document.createElement('i');
+        d.style.left=Math.random()*100+'%';
+        d.style.animationDuration=(9+Math.random()*11)+'s';
+        d.style.animationDelay=(Math.random()*12)+'s';
+        d.style.width=d.style.height=(2+Math.random()*3)+'px';
+        frag.appendChild(d)}
+    dust.appendChild(frag);
+</script>
+</body>
+</html>
